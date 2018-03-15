@@ -15,6 +15,8 @@ public class Note {
     private String note;
     private String timestamp;
 
+
+    // Create table SQL query
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY,"

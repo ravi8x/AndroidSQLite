@@ -63,11 +63,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         // Displaying dot from HTML character code
         holder.dot.setText(Html.fromHtml("&#8226;"));
 
-        // Changing dot color to random color
-        // holder.dot.setTextColor(getRandomMaterialColor("400"));
-
         // Formatting and displaying timestamp
-        // holder.timestamp.setText(formatDate(note.getTimestamp()));
+        holder.timestamp.setText(formatDate(note.getTimestamp()));
     }
 
     @Override

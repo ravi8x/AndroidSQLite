@@ -89,6 +89,63 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * Inserting new note in db
+     * and refreshing the list
+     */
+    private void createNote(String note) {
+        // inserting note in db and getting
+        // newly inserted note id
+        long id = db.insertNote(note);
+
+        // get the newly inserted note from db
+        Note n = db.getNote(id);
+
+        if (n != null) {
+            // adding new note to array list
+            notesList.add(n);
+
+            // refreshing the list
+            mAdapter.notifyDataSetChanged();
+
+            toggleEmptyNotes();
+        }
+    }
+
+    /**
+     * Updating note in db and updating
+     * item in the list by its position
+     */
+    private void updateNote(String note, int position) {
+        Note n = notesList.get(position);
+        // updating note text
+        n.setNote(note);
+
+        // updating note in db
+        db.updateNote(n);
+
+        // refreshing the list
+        notesList.set(position, n);
+        mAdapter.notifyItemChanged(position);
+
+        toggleEmptyNotes();
+    }
+
+    /**
+     * Deleting note from SQLite and removing the
+     * item from the list by its position
+     */
+    private void deleteNote(int position) {
+        // deleting the note from db
+        db.deleteNote(notesList.get(position));
+
+        // removing the note from the list
+        notesList.remove(position);
+        mAdapter.notifyItemRemoved(position);
+
+        toggleEmptyNotes();
+    }
+
+    /**
      * Opens dialog with Edit - Delete options
      * Edit - 0
      * Delete - 0
@@ -172,40 +229,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void createNote(String note) {
-        long id = db.insertNote(note);
-
-        Note n = db.getNote(id);
-
-        if (n != null) {
-            notesList.add(n);
-            mAdapter.notifyDataSetChanged();
-
-            toggleEmptyNotes();
-        }
-    }
-
-    private void updateNote(String note, int position) {
-        Note n = notesList.get(position);
-        n.setNote(note);
-
-        db.updateNote(n);
-
-        notesList.set(position, n);
-        mAdapter.notifyItemChanged(position);
-
-        toggleEmptyNotes();
-    }
-
-    private void deleteNote(int position) {
-        db.deleteNote(notesList.get(position));
-
-        notesList.remove(position);
-        mAdapter.notifyItemRemoved(position);
-
-        toggleEmptyNotes();
-    }
-
+    /**
+     * Toggling list and empty notes view
+     */
     private void toggleEmptyNotes() {
         if (notesList.size() > 0) {
             noNotesView.setVisibility(View.GONE);

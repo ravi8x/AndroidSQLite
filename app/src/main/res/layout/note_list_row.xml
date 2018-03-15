@@ -16,6 +16,7 @@
         android:layout_marginRight="@dimen/dot_margin_right"
         android:layout_marginTop="@dimen/dimen_10"
         android:includeFontPadding="false"
+        android:textColor="@color/colorAccent"
         android:lineSpacingExtra="0dp"
         android:textSize="@dimen/dot_text_size" />
 
