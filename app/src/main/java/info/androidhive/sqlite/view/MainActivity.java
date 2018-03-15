@@ -98,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
         Note n = db.getNote(id);
 
         if (n != null) {
-            // adding new note to array list
-            notesList.add(n);
+            // adding new note to array list at 0 position
+            notesList.add(0, n);
 
             // refreshing the list
             mAdapter.notifyDataSetChanged();
