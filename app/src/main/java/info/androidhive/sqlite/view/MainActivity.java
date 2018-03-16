@@ -230,7 +230,9 @@ public class MainActivity extends AppCompatActivity {
      * Toggling list and empty notes view
      */
     private void toggleEmptyNotes() {
-        if (notesList.size() > 0) {
+        // you can check notesList.size() > 0
+
+        if (db.getNotesCount() > 0) {
             noNotesView.setVisibility(View.GONE);
         } else {
             noNotesView.setVisibility(View.VISIBLE);
