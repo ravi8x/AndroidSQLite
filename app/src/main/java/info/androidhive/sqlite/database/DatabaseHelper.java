@@ -96,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + Note.TABLE_NAME + " ORDER BY " +
                 Note.COLUMN_TIMESTAMP + " DESC";
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
